@@ -1,29 +1,35 @@
 # ValueObject
 
-TODO: Write a gem description
+A very small library to help you create value objects.
 
-## Installation
+## Example use
 
-Add this line to your application's Gemfile:
+    # subclass it
+    class Person < ValueObject
+      has_fields :height, :weight
+    end
 
-    gem 'value_object'
+    # create a value object with positional arguments
+    p1 = Person.new(176, 75)
+    p2 = Person.new(160, 60)
 
-And then execute:
+    # create a value object with a hash
+    p3 = Person.new(:height => 176, :weight => 75)
 
-    $ bundle
+    # test whether value objects are equal
+    p1 == p2      #=> false
+    p1 == p3      #=> true
 
-Or install it yourself as:
+    # test for emptiness
+    Person.new(nil, nil).empty?    #=> true
 
-    $ gem install value_object
+    # you can even subclass them again!
+    class Superhero < Person
+      has_fields :power
+    end
 
-## Usage
+    superman = Superhero.new('6 foot 3', '235 lbs', 'flies')
 
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+    superman.height     # => '6 foot 3'
+    superman.weight     # => '235 lbs'
+    superman.power      # => 'flies'

@@ -6,7 +6,10 @@ A very small library to help you define and create immutable value objects.
 
 Mainly to reduce the amount of code I needed for ActiveRecord `composed_of` classes.
 ValueObjects are designed with `composed_of` in mind. For example, they will happily
-accept `nil` for their fields, unlike Values (https://github.com/tcrayford/Values).
+accept `nil` for their fields, unlike [Values](https://github.com/tcrayford/Values).
+They will also allow multiple levels of subclassing -- if you want a value object
+which is like some other value object (ie, it has all of the other object's fields
+and methods) but will some additional field or method, you can simply subclass it.
 
 ## how to use
 

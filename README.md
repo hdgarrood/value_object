@@ -2,7 +2,7 @@
 
 A very small library to help you define and create immutable value objects.
 
-## why?
+## Why?
 
 Mainly to reduce the amount of code I needed for ActiveRecord `composed_of` classes.
 ValueObjects are designed with `composed_of` in mind; they will:
@@ -12,35 +12,44 @@ ValueObjects are designed with `composed_of` in mind; they will:
 which is like some other class of value object (ie, it has all of the other object's fields
 and methods) but will some additional field or method, you can simply subclass it.
 
-## how to use
+## How to use
 
-    # require it
+Require it
+
     require 'value_object'
 
-    # subclass it
+Subclass it
+
+
     class Person < ValueObject::Base
       has_fields :height, :weight
     end
 
-    # create a value object with positional arguments
+Create a value object with positional arguments
+
     tom = Person.new(176, 75)
     dick = Person.new(160, 60)
 
-    # create a value object with a hash
+Create a value object with a hash
+
     harry = Person.new(:height => 176, :weight => 75)
     
-    # read their attributes
+Read their attributes
+
     tom.height        # => 176
     dick.weight       # => 60
 
-    # test whether value objects are equal
+Test whether value objects are equal
+
     tom == dick       # => false
     tom == harry      # => true
 
-    # test for emptiness
+Test for emptiness
+
     Person.new(nil, nil).empty?    # => true
 
-    # you can even subclass them again!
+You can even subclass them again!
+
     class Superhero < Person
       has_fields :power
     end

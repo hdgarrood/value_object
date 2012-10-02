@@ -39,10 +39,10 @@ Read their attributes
     tom.height        # => 176
     dick.weight       # => 60
 
-Test whether value objects are equal
+Test whether value objects are equal (note: #== and #eql? are aliases)
 
     tom == dick       # => false
-    tom == harry      # => true
+    tom.eql?(harry)   # => true
 
 Test for emptiness
 
@@ -59,3 +59,26 @@ You can even subclass them again!
     superman.height     # => '6 foot 3'
     superman.weight     # => '235 lbs'
     superman.power      # => 'flies'
+
+Turn them into hashes
+
+    superman.to_hash
+    # => {:height => '6 foot 3',
+          :weight => '325 lbs',
+          :power => 'flies'}
+
+Make copies with only one changed value
+
+    superman.copy_with(:power => 'laser eyes')
+    # => #<Superhero:0x3914490
+        @height="6 foot 3",
+        @weight="235 lbs",
+        @power="laser eyes"
+    >
+
+Hash them. A hash depends on the both the object's class and the
+attribute values for that object, so that if o1 and o2 are both value
+objects, and o1.eql?(o2), then o1.hash == o2.hash
+
+    superman.hash
+    # => 1160641176

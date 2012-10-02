@@ -47,4 +47,16 @@ class ValueObjectTest < Test::Unit::TestCase
     assert_equal('235 lbs', superman.weight)
     assert_equal('flies', superman.powers[0])
   end
+
+  def test_hashes_are_equal_if_people_are_equal
+    p1 = @person_class.new(150, 50)
+    p2 = @person_class.new(150, 50)
+    assert_equal(p1.hash, p2.hash)
+  end
+
+  def test_hashes_are_not_equal_if_people_are_not_equal
+    p1 = @person_class.new(150, 50)
+    p2 = @person_class.new(200, 50)
+    assert_not_equal(p1.hash, p2.hash)
+  end
 end

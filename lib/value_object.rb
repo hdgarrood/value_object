@@ -37,5 +37,11 @@ module ValueObject
     def empty?
       fields.all? { |f| send(f).nil? }
     end
+
+    def to_hash
+      hash = {}
+      fields.each { |f| hash[f] = send(f) }
+      hash
+    end
   end
 end

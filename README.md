@@ -1,11 +1,11 @@
 # ValueObject
 
-A very small library to help you create value objects.
+A very small library to help you define and create immutable value objects.
 
 ## how to use
 
     # subclass it
-    class Person < ValueObject
+    class Person < ValueObject::Base
       has_fields :height, :weight
     end
 
@@ -15,6 +15,10 @@ A very small library to help you create value objects.
 
     # create a value object with a hash
     harry = Person.new(:height => 176, :weight => 75)
+    
+    # read their attributes
+    tom.height        # => 176
+    dick.weight       # => 60
 
     # test whether value objects are equal
     tom == dick       #=> false

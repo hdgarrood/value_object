@@ -2,6 +2,12 @@
 
 A very small library to help you define and create immutable value objects.
 
+## why?
+
+Mainly to reduce the amount of code I needed for ActiveRecord `composed_of` classes.
+ValueObjects are designed with `composed_of` in mind. For example, they will happily
+accept `nil` for their fields, unlike Values (https://github.com/tcrayford/Values).
+
 ## how to use
 
     # subclass it

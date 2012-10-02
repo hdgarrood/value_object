@@ -43,5 +43,10 @@ module ValueObject
       fields.each { |f| hash[f] = send(f) }
       hash
     end
+
+    def copy_with(attrs)
+      new_attrs = self.to_hash.update(attrs)
+      self.class.new(new_attrs)
+    end
   end
 end

@@ -59,4 +59,10 @@ class ValueObjectTest < Test::Unit::TestCase
     p2 = @person_class.new(200, 50)
     assert_not_equal(p1.hash, p2.hash)
   end
+
+  def test_can_copy_value_objects_with_new_attributes
+    p1 = @person_class.new(175, 75)
+    p2 = @person_class.new(175, 80)
+    assert_equal(p2, p1.copy_with(:weight => 80))
+  end
 end

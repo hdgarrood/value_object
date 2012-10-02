@@ -23,6 +23,7 @@ class ValueObjectTest < Test::Unit::TestCase
     p1 = @person_class.new(176, 75)
     p2 = @person_class.new(176, 75)
     assert_equal(p1, p2)
+    assert p1.eql?(p2), "p1 should #eql? p2"
   end
 
   def test_inequality_of_people

@@ -25,8 +25,13 @@ module ValueObject
       end
     end
 
-    def ==(other)
+    def eql?(other)
+      return false if self.class != other.class
       fields.all? { |f| send(f) == other.send(f) }
+    end
+
+    def ==(other)
+      eql?(other)
     end
 
     def empty?

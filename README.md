@@ -30,11 +30,11 @@ accept `nil` for their fields, unlike Values (https://github.com/tcrayford/Value
     dick.weight       # => 60
 
     # test whether value objects are equal
-    tom == dick       #=> false
-    tom == harry      #=> true
+    tom == dick       # => false
+    tom == harry      # => true
 
     # test for emptiness
-    Person.new(nil, nil).empty?    #=> true
+    Person.new(nil, nil).empty?    # => true
 
     # you can even subclass them again!
     class Superhero < Person

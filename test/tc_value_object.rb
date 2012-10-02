@@ -65,4 +65,10 @@ class ValueObjectTest < Test::Unit::TestCase
     p2 = @person_class.new(175, 80)
     assert_equal(p2, p1.copy_with(:weight => 80))
   end
+
+  def test_turning_value_objects_into_hashes
+    p = @person_class.new(175, 75)
+    p_hash = {:height => 175, :weight => 75}
+    assert_equal(p_hash, p.to_hash)
+  end
 end

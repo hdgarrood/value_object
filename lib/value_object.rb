@@ -48,5 +48,11 @@ module ValueObject
       new_attrs = self.to_hash.update(attrs)
       self.class.new(new_attrs)
     end
+
+    # if the class is the same, and the fields' values are the same,
+    # the hash should be the same
+    def hash
+      to_hash.hash + self.class.hash
+    end
   end
 end

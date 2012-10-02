@@ -67,7 +67,7 @@ Turn them into hashes
           :weight => '325 lbs',
           :power => 'flies'}
 
-Make copies with only one changed value
+Make copies by passing a hash of updated attributes
 
     superman.copy_with(:power => 'laser eyes')
     # => #<Superhero:0x3914490

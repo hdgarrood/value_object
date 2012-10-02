@@ -10,6 +10,9 @@ accept `nil` for their fields, unlike Values (https://github.com/tcrayford/Value
 
 ## how to use
 
+    # require it
+    require 'value_object'
+
     # subclass it
     class Person < ValueObject::Base
       has_fields :height, :weight

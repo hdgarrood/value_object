@@ -34,4 +34,16 @@ class ValueObjectTest < Test::Unit::TestCase
   def test_emptiness_of_people
     assert_equal(true, @person_class.new(nil, nil).empty?)
   end
+
+  def test_can_subclass_subclasses
+    superhero_class = Class.new(@person_class)
+    superhero_class.has_fields :powers
+
+    superman = superhero_class.new('6 foot 3',
+                                   '235 lbs',
+                                   ['flies', 'laser eyes', 'really strong'])
+    assert_equal('6 foot 3', superman.height)
+    assert_equal('235 lbs', superman.weight)
+    assert_equal('flies', superman.powers[0])
+  end
 end

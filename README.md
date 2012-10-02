@@ -1,5 +1,4 @@
-# ValueObject
-
+# ValueObject 
 A very small library to help you define and create immutable value
 objects.  Mainly to reduce the amount of code I needed for ActiveRecord
 `composed_of` classes.
@@ -37,6 +36,7 @@ aliases.
 You can also create instances where all values are nil. This is the only
 case in which a value object will return `true` for `empty?`
 
+    harry.empty?                   # => false
     Person.new(nil, nil).empty?    # => true
 
 You can even subclass them again to add more fields!

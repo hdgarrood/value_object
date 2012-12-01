@@ -8,13 +8,9 @@ module ValueObject
 
     class << self
       def has_fields(*args)
-        attr_reader *args
+        attr_reader(*args)
         self.fields += args
       end
-    end
-
-    def fields
-      self.class.fields
     end
 
     def initialize(*args)

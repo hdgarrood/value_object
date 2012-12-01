@@ -10,6 +10,7 @@ desc "Run tests"
 Rake::TestTask.new do |t|
   t.libs << 'test'
   t.pattern = test_pattern
+  t.warning = true
 end
 
 desc "Run tests with SimpleCov coverage"

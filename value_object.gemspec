@@ -14,6 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "value_object"
   gem.require_paths = ["lib"]
   gem.version       = ValueObject::VERSION
+  gem.license       = "MIT"
 
   gem.add_dependency 'activesupport'
   gem.add_development_dependency 'simplecov'

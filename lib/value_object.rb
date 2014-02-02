@@ -23,7 +23,7 @@ module ValueObject
 
     def eql?(other)
       return false if self.class != other.class
-      fields.all? { |f| send(f) == other.send(f) }
+      fields.all? { |f| public_send(f) == other.public_send(f) }
     end
 
     def ==(other)
@@ -31,12 +31,12 @@ module ValueObject
     end
 
     def empty?
-      fields.all? { |f| send(f).nil? }
+      fields.all? { |f| public_send(f).nil? }
     end
 
     def to_hash
       hash = {}
-      fields.each { |f| hash[f] = send(f) }
+      fields.each { |f| hash[f] = public_send(f) }
       hash
     end
 

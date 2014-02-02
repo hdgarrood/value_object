@@ -1,4 +1,4 @@
-# ValueObject 
+# ValueObject
 A very small library to help you define and create immutable value
 objects.  Mainly to reduce the amount of code I needed for ActiveRecord
 `composed_of` classes.
@@ -8,66 +8,68 @@ objects.  Mainly to reduce the amount of code I needed for ActiveRecord
 Start off by creating a class which derives from `ValueObject::Base`.
 Call `has_fields` to define a list of fields for the class.
 
-    class Person < ValueObject::Base
-      has_fields :height, :weight
+    class Route < ValueObject::Base
+      has_fields :from, :to
     end
 
 You can now create instances of this class with positional arguments:
 
-    tom = Person.new(176, 75)
-    dick = Person.new(160, 60)
+    m1_motorway    = Route.new("London", "Leeds")
+    channel_tunnel = Route.new("Calais", "Dover")
 
 Or with hashes:
 
-    harry = Person.new(:height => 176, :weight => 75)
-    
+    route_66 = Route.new(:from => "Santa Monica", :to => "Chicago")
+
 You can read their attributes, but you can't write them.
 
-    tom.height           # => 176
-    dick.weight          # => 60
-    harry.height = 180   # => NoMethodError
+    m1_motorway.from     # => "London"
+    channel_tunnel.to    # => "Dover"
+    route_66.from = "IL" # => NoMethodError
 
 You can test whether they are equal with `==` or `eql?`, which are
 aliases.
 
-    tom == dick       # => false
-    tom.eql?(harry)   # => true
+    m1_motorway == channel_tunnel                 # => false
+    m1_motorway.eql?(Route.new("London", "Leeds)) # => true
 
-You can also create instances where all values are nil. This is the only
-case in which a value object will return `true` for `empty?`
+You can also create instances where all values are nil. Objects like this will
+return `true` when sent the message `empty?` (and will)
 
-    harry.empty?                   # => false
-    Person.new(nil, nil).empty?    # => true
+    m1_motorway.empty?         # => false
+    Route.new(nil, nil).empty? # => true
 
 You can even subclass them again to add more fields!
 
-    class Superhero < Person
-      has_fields :power
+    class Railway < Route
+      has_fields :serviced_by
     end
 
-    superman = Superhero.new('6 foot 3', '235 lbs', 'flies')
+    a_railway = Railway.new("Aberdeen", "Inverness", "ScotRail")
 
-    superman.height     # => '6 foot 3'
-    superman.weight     # => '235 lbs'
-    superman.power      # => 'flies'
+    a_railway.height     # => '6 foot 3'
+    a_railway.weight     # => '235 lbs'
+    a_railway.power      # => 'flies'
 
 Create a hash from a value object by sending `to_hash`.
 
-    superman.to_hash
-    # => {:height => '6 foot 3',
-          :weight => '325 lbs',
-          :power => 'flies'}
+    a_railway.to_hash
+    # => {
+           :from        => "Aberdeen",
+           :to          => "Inverness",
+           :serviced_by => "ScotRail"
+         }
 
 `copy_with` allows you to make a copy of a value object while updating
 certain attributes.
 
-    superman.copy_with(:power => 'laser eyes')
-    # => #<Superhero:0x3914490
-        @height="6 foot 3",
-        @weight="235 lbs",
-        @power="laser eyes">
+    a_railway.copy_with(:serviced_by => "Virgin")
+    # => #<Railway:0x3914490
+        @from="Aberdeen",
+        @to="Inverness",
+        @serviced_by="Virgin">
 
 Value objects also define `hash`, which depends on the values of the
 fields as well as the class of which they are an instance.
 
-    superman.hash            # => 1160641176
+    a_railway.hash            # => 1160641176

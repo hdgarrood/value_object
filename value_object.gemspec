@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Harry Garrood"]
   gem.email         = ["hdgarrood@gmail.com"]
   gem.description   = %q{A tiny gem for value objects.}
-  gem.summary       = %q{A gem which gives you a class which you can subclass to easily create immutable value objects.}
+  gem.summary       = %q{A tiny gem which makes it dead simple to create immutable value objects.}
   gem.homepage      = "https://github.com/hdgarrood/value_object"
 
   gem.files         = `git ls-files`.split($\)

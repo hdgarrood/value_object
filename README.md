@@ -33,11 +33,12 @@ aliases.
     m1_motorway == channel_tunnel                 # => false
     m1_motorway.eql?(Route.new("London", "Leeds)) # => true
 
-You can also create instances where all values are nil. Objects like this will
-return `true` when sent the message `empty?` (and will)
+You can also create instances where one or more fields are nil. You can check
+whether all fields are nil with the `empty?` message.
 
-    m1_motorway.empty?         # => false
-    Route.new(nil, nil).empty? # => true
+    m1_motorway.empty?                 # => false
+    Route.new("somewhere", nil).empty? # => false
+    Route.new(nil, nil).empty?         # => true
 
 You can even subclass them again to add more fields!
 
@@ -47,9 +48,9 @@ You can even subclass them again to add more fields!
 
     a_railway = Railway.new("Aberdeen", "Inverness", "ScotRail")
 
-    a_railway.height     # => '6 foot 3'
-    a_railway.weight     # => '235 lbs'
-    a_railway.power      # => 'flies'
+    a_railway.from        # => 'Aberdeen'
+    a_railway.to          # => 'Inverness'
+    a_railway.serviced_by # => 'ScotRail'
 
 Create a hash from a value object by sending `to_hash`.
 
@@ -72,4 +73,4 @@ certain attributes.
 Value objects also define `hash`, which depends on the values of the
 fields as well as the class of which they are an instance.
 
-    a_railway.hash            # => 1160641176
+    a_railway.hash   # => 1160641176
